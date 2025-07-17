@@ -1,94 +1,129 @@
-# Agentic Investing System
+# Trading Opportunities Dashboard
 
-A multi-agent investing system for swing trading and options analysis with technical analysis and interactive dashboard.
+AI-powered trading opportunities dashboard with TradingView integration for educational technical analysis.
 
-## Directory Structure
+## 🚀 Features
 
-```
-Investing/                    # Main workspace (always run commands from here)
-├── backend/                  # Python APIs and agents
-│   ├── api_technical.py     # Real technical analysis API
-│   ├── api_openai.py        # OpenAI-powered analysis
-│   ├── api_simple.py        # Mock data API
-│   └── requirements.txt     # Python dependencies
-├── frontend/                 # React dashboard
-│   ├── src/                 # React components
-│   ├── package.json         # Node dependencies
-│   └── ...                  # Vite/React configuration
-├── start_backend.sh         # Backend startup script
-├── start_frontend.sh        # Frontend startup script
-├── package.json             # Root package.json with unified scripts
-└── README.md               # This file
-```
+- **Backend API** with technical analysis (FastAPI + SQLite)
+- **Frontend Dashboard** with React + Vite + Tailwind CSS
+- **TradingView Charts** with RSI, MACD, Volume indicators
+- **Opportunity Modal** with detailed technical analysis
+- **Responsive Design** for mobile and desktop
+- **Real-time Data** via Yahoo Finance integration
 
-## Best Practices for Running Services
+## 🔧 Setup Instructions
 
-### 1. Always Run from Root Directory (`Investing/`)
+### Prerequisites
+- Python 3.8+
+- Node.js 16+
+- OpenAI API Key
 
+### 1. Clone Repository
 ```bash
-# ✅ Correct - from Investing/ directory
-./start_backend.sh
-./start_frontend.sh
-
-# ❌ Wrong - don't navigate to subdirectories
-cd backend && python api_technical.py
+git clone https://github.com/jasonleinart/trading-opportunities-dashboard.git
+cd trading-opportunities-dashboard
 ```
 
-### 2. Use the Provided Scripts
-
+### 2. Environment Configuration
 ```bash
-# Start backend only
-npm run start:backend
+# Copy the environment template
+cp env.example .env
 
-# Start frontend only  
-npm run start:frontend
-
-# Start both simultaneously
-npm run start:dev
+# Edit .env and add your actual keys
+nano .env
 ```
 
-### 3. Installation Commands
+**Required Environment Variables:**
+```env
+# Copy this to .env and update with your actual keys
 
+# Agent API Key for authentication (development default)
+AGENT_API_KEY=dev-key-12345
+
+# OpenAI API Key (required for OpenAI-powered analysis)
+OPENAI_API_KEY=your_actual_openai_api_key_here
+
+# Optional: Custom log level
+LOG_LEVEL=INFO
+```
+
+### 3. Backend Setup
 ```bash
-# Install all dependencies
-npm install                    # Root dependencies (concurrently)
-npm run install:frontend       # React/Node dependencies
-npm run install:backend        # Python dependencies
+# Install Python dependencies
+cd backend
+pip install -r requirements.txt
+
+# Start the backend API
+../start_backend.sh
 ```
 
-## Quick Start
-
-1. **Install dependencies**:
-   ```bash
-   npm install
-   npm run install:frontend
-   npm run install:backend
-   ```
-
-2. **Start development servers**:
-   ```bash
-   npm run start:dev
-   ```
-
-3. **Access the application**:
-   - Frontend Dashboard: http://localhost:5173
-   - Backend API: http://localhost:8001
-
-## API Endpoints
-
-- `GET /health` - Health check
-- `POST /research` - Technical analysis (requires auth header)
-
-## Common Issues
-
-### Port Already in Use
+### 4. Frontend Setup
 ```bash
-# Find and kill process on port 8001
-lsof -ti:8001 | xargs kill
+# Install Node.js dependencies
+cd frontend
+npm install
+
+# Start the frontend development server
+npm run dev
 ```
 
-### Tailwind CSS Issues
-The frontend uses the correct `@tailwindcss/postcss` package to avoid PostCSS plugin errors.
+### 5. Access the Application
+- **Frontend**: http://localhost:5173
+- **Backend API**: http://localhost:8001
+- **API Documentation**: http://localhost:8001/docs
 
-### Directory Confusion
-Always run commands from the root `Investing/` directory. The scripts handle navigation to the correct subdirectories. 
+## 🔒 Security Notes
+
+⚠️ **IMPORTANT**: Never commit your actual API keys to version control!
+
+- ✅ The `.env` file is in `.gitignore` 
+- ✅ Use `env.example` as a template
+- ✅ Set environment variables in production
+- ✅ Rotate API keys regularly
+
+## 📊 Usage
+
+1. **Run Analysis**: Click "Run Technical Analysis" to discover opportunities
+2. **View Details**: Click "View" on any opportunity to see detailed analysis
+3. **Chart Analysis**: Interactive TradingView charts with technical indicators
+4. **Educational Only**: This is for learning purposes, not financial advice
+
+## 🛠 Development
+
+### Project Structure
+```
+trading-opportunities-dashboard/
+├── backend/                 # FastAPI backend
+│   ├── api.py              # Main API endpoints
+│   ├── agent.py            # Technical analysis agent
+│   ├── db.py               # Database models
+│   └── requirements.txt    # Python dependencies
+├── frontend/               # React frontend
+│   ├── src/
+│   │   ├── components/     # React components
+│   │   └── App.jsx         # Main application
+│   └── package.json        # Node.js dependencies
+└── env.example             # Environment template
+```
+
+### Key Technologies
+- **Backend**: FastAPI, SQLite, OpenAI, yfinance
+- **Frontend**: React, Vite, Tailwind CSS, Lucide Icons
+- **Charts**: TradingView Widgets
+- **Analysis**: RSI, MACD, Volume, Moving Averages
+
+## ⚠️ Disclaimer
+
+This application is for **educational purposes only**. It is not financial advice and should not be used for actual trading decisions. Always do your own research and consult with financial professionals.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## 📄 License
+
+This project is open source and available under the MIT License. 
