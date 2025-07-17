@@ -42,13 +42,18 @@ env.bak/
 venv.bak/
 .python-version
 
-# Environment variables
+# Environment variables - NEVER COMMIT THESE!
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
-env.example
+.env.production
+.env.staging
+*.env.backup
+
+# Keep env.example - it's safe (template only)
+!env.example
 
 # Database files
 *.db
